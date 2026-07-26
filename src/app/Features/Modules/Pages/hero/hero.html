@@ -1,0 +1,95 @@
+<section class="relative overflow-hidden bg-gradient-to-b from-white via-blue-50/40 to-white py-20 px-6">
+
+  <!-- Decorative animated blobs -->
+  <div class="pointer-events-none absolute inset-0 overflow-hidden">
+    <div class="absolute -top-20 right-10 w-72 h-72 bg-blue-200/30 rounded-full blur-3xl animate-pulse" style="animation-duration: 6s;"></div>
+    <div class="absolute -bottom-24 left-16 w-64 h-64 bg-indigo-200/30 rounded-full blur-3xl animate-pulse" style="animation-duration: 8s;"></div>
+  </div>
+
+  <div class="relative max-w-6xl mx-auto flex flex-col md:flex-row items-center gap-12">
+
+    <!-- Left: text content -->
+    <div class="flex-1 text-center md:text-left">
+
+      <!-- Badge -->
+      <div class="inline-flex items-center gap-2 bg-white border border-gray-200 px-4 py-1.5 rounded-full text-xs font-medium text-blue-600 mb-6 shadow-sm">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10 2l1.5 5.5L17 9l-5.5 1.5L10 16l-1.5-5.5L3 9l5.5-1.5L10 2z"/>
+        </svg>
+        AI-Powered Exam Prep
+      </div>
+
+      <!-- Heading -->
+      <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-4">
+        Crack Your Exam with <span class="text-blue-600">Smarter Prep</span>
+      </h1>
+
+      <!-- Subtext -->
+      <p class="text-gray-500 text-base md:text-lg mb-8 max-w-lg mx-auto md:mx-0">
+        Personalized practice, instant doubt-solving, and AI-driven mock tests — everything you need to ace your exams, in one place.
+      </p>
+
+      <!-- CTA buttons -->
+      <div class="flex flex-wrap items-center justify-center md:justify-start gap-4 mb-10">
+        <a routerLink="/signup"
+          class="px-6 py-3 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-200">
+          Start Free Trial
+        </a>
+        <a href="#"
+          class="flex items-center gap-2 px-6 py-3 text-sm font-medium text-gray-900 bg-white border border-gray-300 rounded-md hover:bg-gray-50 hover:-translate-y-0.5 hover:shadow-md transition-all duration-200">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M6 4l10 6-10 6V4z"/>
+          </svg>
+          Watch Demo
+        </a>
+      </div>
+
+      <!-- Trust stats -->
+      <div class="flex flex-wrap justify-center md:justify-start gap-x-10 gap-y-4">
+        <div>
+          <div class="text-2xl font-bold text-gray-900">50K+</div>
+          <div class="text-xs text-gray-500">Students</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-gray-900">1000+</div>
+          <div class="text-xs text-gray-500">Mock Tests</div>
+        </div>
+        <div>
+          <div class="text-2xl font-bold text-gray-900">95%</div>
+          <div class="text-xs text-gray-500">Success Rate</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: illustration -->
+    <div class="flex-1 flex justify-center w-full">
+      <div class="relative w-full max-w-md">
+
+        <img src="images/hero-illustration.png" alt="Student preparing for exam with AI assistance"
+          class="w-full h-100 rounded-2xl">
+
+        <!-- Floating badge card 1 -->
+        <div class="absolute top-4 left-4 bg-white border border-gray-200 rounded-xl shadow-lg px-3 py-2 flex items-center gap-2 animate-bounce" style="animation-duration: 3s;">
+          <div class="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+            </svg>
+          </div>
+          <span class="text-xs font-medium text-gray-700">Live Doubt Solving</span>
+        </div>
+
+        <!-- Floating badge card 2 -->
+        <div class="absolute bottom-4 right-4 bg-white border border-gray-200 rounded-xl shadow-lg px-3 py-2 flex items-center gap-2">
+          <div class="w-8 h-8 bg-green-50 rounded-lg flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+            </svg>
+          </div>
+          <span class="text-xs font-medium text-gray-700">Quiz Completed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

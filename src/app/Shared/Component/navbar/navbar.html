@@ -1,0 +1,87 @@
+<nav class="sticky top-0 z-50 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+  <!--  LOGO -->
+  <a routerLink="/home" class="text-xl font-bold text-gray-900">
+    <img src="images/logo.png" class="logo-img" alt=""></a>
+
+  <!--  Desktop Links -->
+  <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+    <li>
+      <a routerLink="/home" class="hover:text-blue-600 transition-colors" routerLinkActive="text-blue-600">Home</a>
+    </li>
+    <li>
+      <a routerLink="/features" class="hover:text-blue-600 transition-colors"
+        routerLinkActive="text-blue-600">Features</a>
+    </li>
+    <li>
+      <a routerLink="/courses" class="hover:text-blue-600 transition-colors"
+        routerLinkActive="text-blue-600">Courses</a>
+    </li>
+    <li>
+      <a routerLink="/about" class="hover:text-blue-600 transition-colors" routerLinkActive="text-blue-600">About</a>
+    </li>
+    <li>
+      <a routerLink="/contact" class="hover:text-blue-600 transition-colors"
+        routerLinkActive="text-blue-600">Contact</a>
+    </li>
+  </ul>
+
+  <!-- Desktop auth buttons -->
+  <div class="hidden md:flex items-center gap-3">
+    <a routerLink="/login"
+      class="px-4 py-2 text-sm font-medium border border-gray-300 rounded-md hover:bg-gray-50 transition-colors">
+      Log in
+    </a>
+    <a routerLink="/signup"
+      class="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 transition-colors">
+      Sign up
+    </a>
+  </div>
+
+  <!-- Hamburger button (mobile only) -->
+  <button class="md:hidden flex flex-col gap-1.5 p-2" (click)="isMenuOpen = !isMenuOpen" aria-label="Toggle menu">
+    <span class="w-6 h-0.5 bg-gray-900 transition-transform" [class.rotate-45]="isMenuOpen"
+      [class.translate-y-2]="isMenuOpen"></span>
+    <span class="w-6 h-0.5 bg-gray-900 transition-opacity" [class.opacity-0]="isMenuOpen"></span>
+    <span class="w-6 h-0.5 bg-gray-900 transition-transform" [class.-rotate-45]="isMenuOpen"
+      [class.-translate-y-2]="isMenuOpen"></span>
+  </button>
+</nav>
+
+<!-- Mobile dropdown menu -->
+<div class="md:hidden overflow-hidden transition-all duration-300 bg-white border-b border-gray-200"
+  [class.max-h-96]="isMenuOpen" [class.max-h-0]="!isMenuOpen">
+  <ul class="flex flex-col text-sm font-medium text-gray-700">
+    <li>
+      <a routerLink="/home" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
+        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">Home</a>
+    </li>
+    <li>
+      <a routerLink="/features" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
+        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">Features</a>
+    </li>
+    <li>
+      <a routerLink="/courses" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
+        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">Courses</a>
+    </li>
+    <li>
+      <a routerLink="/about" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
+        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">About</a>
+    </li>
+    <li>
+      <a routerLink="/contact" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
+        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">Contact</a>
+    </li>
+  </ul>
+  <div class="flex flex-col gap-2 px-6 py-4">
+    <a routerLink="/login"
+      class="w-full text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-md hover:bg-gray-50"
+      (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">
+      Log in
+    </a>
+    <a routerLink="/signup"
+      class="w-full text-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+      (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">
+      Sign up
+    </a>
+  </div>
+</div>
