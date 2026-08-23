@@ -5,23 +5,30 @@
 
   <!--  Desktop Links -->
   <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-    <li>
-      <a routerLink="/home" class="hover:text-blue-600 transition-colors" routerLinkActive="text-blue-600">Home</a>
-    </li>
+<li>
+  <a
+    routerLink="/home"
+    routerLinkActive="text-blue-600 border-blue-600"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="py-5 border-b-2 border-transparent font-medium hover:text-blue-600 transition-all duration-200">
+    Home
+  </a>
+</li>
     <li>
       <a routerLink="/features" class="hover:text-blue-600 transition-colors"
-        routerLinkActive="text-blue-600">Features</a>
+        routerLinkActive=" border-b-[3px]text-blue-600">Features</a>
     </li>
     <li>
       <a routerLink="/courses" class="hover:text-blue-600 transition-colors"
-        routerLinkActive="text-blue-600">Courses</a>
+        routerLinkActive=" border-b-[3px]text-blue-600">Courses</a>
     </li>
     <li>
-      <a routerLink="/about" class="hover:text-blue-600 transition-colors" routerLinkActive="text-blue-600">About</a>
+      <a routerLink="/about" class="hover:text-blue-600 transition-colors"
+        routerLinkActive=" border-b-[3px]text-blue-600">About</a>
     </li>
     <li>
       <a routerLink="/contact" class="hover:text-blue-600 transition-colors"
-        routerLinkActive="text-blue-600">Contact</a>
+        routerLinkActive=" border-b-[3px]text-blue-600">Contact</a>
     </li>
   </ul>
 
@@ -53,34 +60,34 @@
   <ul class="flex flex-col text-sm font-medium text-gray-700">
     <li>
       <a routerLink="/home" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
-        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">Home</a>
+        (click)="isMenuOpen = false" routerLinkActive=" border-b-[3px]bg-blue-50 text-blue-600">Home</a>
     </li>
     <li>
       <a routerLink="/features" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
-        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">Features</a>
+        (click)="isMenuOpen = false" routerLinkActive=" border-b-[3px]bg-blue-50 text-blue-600">Features</a>
     </li>
     <li>
       <a routerLink="/courses" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
-        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">Courses</a>
+        (click)="isMenuOpen = false" routerLinkActive=" border-b-[3px]bg-blue-50 text-blue-600">Courses</a>
     </li>
     <li>
       <a routerLink="/about" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
-        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">About</a>
+        (click)="isMenuOpen = false" routerLinkActive=" border-b-[3px]bg-blue-50 text-blue-600">About</a>
     </li>
     <li>
       <a routerLink="/contact" class="block px-6 py-3 border-b border-gray-100 hover:bg-gray-50"
-        (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">Contact</a>
+        (click)="isMenuOpen = false" routerLinkActive=" border-b-[3px]bg-blue-50 text-blue-600">Contact</a>
     </li>
   </ul>
   <div class="flex flex-col gap-2 px-6 py-4">
     <a routerLink="/login"
       class="w-full text-center px-4 py-2 text-sm font-medium border border-gray-300 rounded-md hover:bg-gray-50"
-      (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">
+      (click)="isMenuOpen = false" routerLinkActive=" border-b-[3px]bg-blue-50 text-blue-600">
       Log in
     </a>
     <a routerLink="/signup"
       class="w-full text-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
-      (click)="isMenuOpen = false" routerLinkActive="bg-blue-50 text-blue-600">
+      (click)="isMenuOpen = false" routerLinkActive=" border-b-[3px]bg-blue-50 text-blue-600">
       Sign up
     </a>
   </div>
