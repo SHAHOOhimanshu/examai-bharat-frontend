@@ -1,35 +1,31 @@
-import { Component, OnInit, OnDestroy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component, signal } from '@angular/core';
 import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+  email,
+  form,
+  FormField,
+  minLength,
+  pattern,
+  required,
+  validate,
+} from '@angular/forms/signals';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-SignUp',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
-  templateUrl: './sign-up.html',
-  styleUrl: './sign-up.css',
+  selector: 'app-login',
+  imports: [CommonModule, RouterLink, FormField],
+  templateUrl: './login.html',
+  styleUrl: './login.css',
 })
-export class SignUp {
-  signupForm!: FormGroup;
-  submitted = false;
-  isSubmitting = false;
-  submitError = '';
-
+export class Login {
+  submitted = signal(false);
+  isSubmitting = signal(false);
+  submitError = signal('');
   currentIndex = signal(0);
 
-  private autoplayId: ReturnType<typeof setInterval> | null = null;
-
+  private autoPlayId: ReturnType<typeof setInterval> | null = null;
   private touchStartX = 0;
   private touchEndX = 0;
-
   slides = [
     {
       image: 'images/illustration-1.png',
@@ -52,136 +48,100 @@ export class SignUp {
       description: 'Pick up right where you left off, on any device',
     },
   ];
+  loginModel = signal({
+    emailOrPhone: '',
+    password: '',
+  });
+  loginForm = form(this.loginModel, (schema) => {
+    required(schema.emailOrPhone);
+    // email(schema.emailOrPhone);
+    validate(schema.emailOrPhone, (EOP) => {
+      const value = EOP.valueOf(schema.emailOrPhone);
+      const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+      const validPhone = /^[6-9]\d{9}$/.test(value);
+      if (!validEmail && !validPhone) {
+        return {
+          kind: 'invalidEmailOrPhone',
+          message: 'Enter a valid email or 10-digit phone number',
+        };
+      }
+      return null;
+    });
 
-  constructor(private fb: FormBuilder) {}
-
+    required(schema.password);
+    minLength(schema.password, 8);
+  });
   ngOnInit(): void {
-    this.signupForm = this.fb.group(
-      {
-        fullName: ['', [Validators.required, Validators.minLength(3)]],
-
-        email: ['', [Validators.required, Validators.email]],
-
-        phone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)]],
-        city: ['', Validators.required],
-        state: ['', Validators.required],
-        password: ['', [Validators.required, Validators.minLength(8)]],
-
-        confirmPassword: ['', Validators.required],
-      },
-
-      {
-        validators: this.passwordMatchValidator,
-      },
-    );
-
     this.startAutoplay();
   }
-
   // =========================
   // SLIDER
   // =========================
-
   next(): void {
     this.currentIndex.update((i) => (i + 1) % this.slides.length);
   }
-
   previous(): void {
     this.currentIndex.update((i) => (i - 1 + this.slides.length) % this.slides.length);
   }
-
   goToSlide(index: number): void {
     this.currentIndex.set(index);
     this.startAutoplay();
   }
-
   // =========================
   // AUTOPLAY
   // =========================
 
   startAutoplay(): void {
     this.stopAutoplay();
-    this.autoplayId = setInterval(() => {
+    this.autoPlayId = setInterval(() => {
       this.next();
     }, 3000);
   }
-
   pauseAutoplay(): void {
-    this.stopAutoplay();
-  }
-
-  stopAutoplay(): void {
-    if (this.autoplayId !== null) {
-      clearInterval(this.autoplayId);
-
-      this.autoplayId = null;
+    if (this.autoPlayId !== null) {
+      clearInterval(this.autoPlayId);
+      this.autoPlayId = null;
     }
   }
+  stopAutoplay(): void {
+    if (this.autoPlayId !== null) {
+      clearInterval(this.autoPlayId);
 
+      this.autoPlayId = null;
+    }
+  }
   // =========================
   // TOUCH / SWIPE
   // =========================
-
   onTouchStart(event: TouchEvent): void {
     this.touchStartX = event.changedTouches[0].screenX;
   }
 
   onTouchEnd(event: TouchEvent): void {
     this.touchEndX = event.changedTouches[0].screenX;
-
     const difference = this.touchStartX - this.touchEndX;
 
     // Ignore very small movement
     if (Math.abs(difference) < 50) {
       return;
     }
-
     // Swipe left
     if (difference > 0) {
       this.next();
     }
-
     // Swipe right
     else {
       this.previous();
     }
   }
-
-  // =========================
-  // PASSWORD VALIDATION
-  // =========================
-
-  passwordMatchValidator(form: AbstractControl): ValidationErrors | null {
-    const password = form.get('password')?.value;
-
-    const confirmPassword = form.get('confirmPassword')?.value;
-
-    if (password === confirmPassword) {
-      return null;
-    }
-
-    return {
-      passwordMismatch: true,
-    };
-  }
-
-  get f() {
-    return this.signupForm.controls;
-  }
-
-  // =========================
-  // SUBMIT
-  // =========================
-
   onSubmit(): void {
-    this.submitted = true;
-
-    if (this.signupForm.invalid) {
-      this.signupForm.markAllAsTouched();
+    this.submitted.set(true);
+    if (this.loginForm().invalid()) {
+      this.loginForm().markAsTouched();
       return;
     }
+    this.isSubmitting.set(true);
   }
-
   ngOnDestroy(): void {
     this.stopAutoplay();
   }

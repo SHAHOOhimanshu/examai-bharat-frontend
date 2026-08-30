@@ -1,0 +1,170 @@
+<div class="main">
+
+  <!-- LEFT: illustration / value prop -->
+  <!-- LEFT: illustration / value prop -->
+  <div class="left-section" (mouseenter)="pauseAutoplay()" (mouseleave)="startAutoplay()"
+    (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+
+    <div class="slide-track">
+
+      <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="currentIndex()=== i">
+        <img [src]="slide.image" [alt]="slide.alt">
+        <h2>{{slide.title}}</h2>
+        <p>{{slide.description}}</p>
+
+      </div>
+
+
+    </div>
+    <div class="dots">
+      <button type="button" *ngFor=" let slide of slides; let i=index" class='dot' [class.active]="currentIndex()===i"
+        (click)="goToSlide(i)" [attr.aria-label]="'Go to slide ' + (i + 1)">
+      </button>
+
+    </div>
+  </div>
+  <!-- RIGHT: registration form -->
+  <div class="right-section">
+
+    <div class="logo">
+      <img src="images/logo.png" alt="Logo">
+      <span>Exam-AI</span>
+    </div>
+
+    <p class="form-title">Registration</p>
+
+    <form class="register-form" (submit)="onSubmit();$event.preventDefault()">
+
+      <div class="field">
+        <label for="UserName"><span class="req">*</span>Name</label>
+        <input type="text" id="UserName" [formField]="signupForm.fullName" placeholder="Please enter your name"
+          [class.invalid]="signupForm.fullName().invalid() && (signupForm.fullName().touched()|| submitted())">
+        @if(signupForm.fullName().invalid()&& (signupForm.fullName().touched() ||submitted())){
+        @if(signupForm.fullName().value()===""){
+        <small style="color:red">Name is required</small>
+        } @else {
+        <small style="color:red">Name must be at least 3 characters</small>
+        }
+        }
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="Email"><span class="req">*</span>Email</label>
+          <input type="email" id="Email" [formField]="signupForm.email" placeholder="Please enter your email"
+            [class.invalid]="signupForm.email().invalid() && (signupForm.email().touched()|| submitted())">
+          @if (signupForm.email().invalid() &&
+          (signupForm.email().touched() || submitted())) {
+
+          @if (signupForm.email().value() === '') {
+          <small style="color:red">Email is required</small>
+          }
+          @else {
+          <small style="color:red">Please enter a valid email address</small>
+          }
+          }
+
+        </div>
+        <div class="field">
+          <label for="PhNumber"><span class="req">*</span>Phone Number</label>
+          <input type="tel" id="PhNumber" [formField]="signupForm.phone" placeholder="Please enter your phone number"
+            [class.invalid]="signupForm.phone().invalid() && (signupForm.phone().touched()||submitted())">
+          @if (signupForm.phone().invalid() &&
+          (signupForm.phone().touched() || submitted())) {
+
+          @if (signupForm.phone().value() === '') {
+          <small style="color:red">Phone number is required</small>
+          }
+          @else {
+          <small style="color:red">
+            Enter a valid 10-digit phone number
+          </small>
+          }
+          }
+
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field password-field">
+          <label for="Password"><span class="req">*</span>Password</label>
+          <input type="password" id="Password" [formField]="signupForm.password"
+            placeholder="Please enter your new password"
+            [class.invalid]="signupForm.password().invalid() && (signupForm.password().touched() || submitted())">
+          <button type="button" class="toggle-eye" data-target="Password">👁</button>
+          @if (signupForm.password().invalid() &&
+          (signupForm.password().touched() || submitted())) {
+
+          @if (signupForm.password().value() === '') {
+          <small style="color:red">Password is required</small>
+          }
+          @else {
+          <small style="color:red">
+            Password must be at least 8 characters
+          </small>
+          }
+          }
+        </div>
+        <div class="field password-field">
+          <label for="CnfPassword"><span class="req">*</span>Confirm Password</label>
+          <input type="password" id="CnfPassword" [formField]="signupForm.confirmPassword"
+            placeholder="Please re-enter your password"
+            [class.invalid]="signupForm.confirmPassword().invalid() &&( signupForm.confirmPassword()|| submitted()).touched()">
+          <button type="button" class="toggle-eye" data-target="CnfPassword">👁</button>
+          @if (signupForm.confirmPassword().invalid() &&
+          (signupForm.confirmPassword().touched() || submitted())) {
+
+          @if (signupForm.confirmPassword().value() === '') {
+          <small style="color:red">Please confirm your password</small>
+          }
+          @else {
+          <small style="color:red">Passwords do not match</small>
+          }
+          }
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="field">
+          <label for="State"><span class="req">*</span>State</label>
+          <select id="State" [formField]="signupForm.state"
+            [class.invalid]="signupForm.state().invalid() && (signupForm.state().touched()|| submitted())">
+            <option value="">Please select State</option>
+            <option value=" bihar">Bihar</option>
+            <option value="delhi">Delhi</option>
+            <option value="up">Uttar Pradesh</option>
+          </select>
+
+          @if (signupForm.state().invalid() &&
+          (signupForm.state().touched() || submitted())) {
+          <small style="color:red">Please select a state</small>
+          }
+        </div>
+        <div class="field">
+          <label for="City"><span class="req">*</span>City</label>
+          <select id="City" [formField]="signupForm.city"
+            [class.invalid]="signupForm.city().invalid() && (signupForm.city().touched()|| submitted())">
+            <option value="">Please select City</option>
+            <option value=" sitamarhi">Sitamarhi</option>
+            <option value="patna">Patna</option>
+            <option value="mehsi">Mehsi</option>
+            <option value="delhi">Delhi</option>
+          </select>
+          @if (signupForm.city().invalid() &&
+          (signupForm.city().touched() || submitted())) {
+          <small style="color:red">Please select a city</small>
+          }
+        </div>
+      </div>
+
+      <button type="submit" class="register-btn">Register</button>
+    </form>
+
+    <p class="login-link">Have Account? <a routerLink="/login">Login</a></p>
+
+    <p class="terms-text">By clicking Register, you agree to our <a routerLink="/terms">Terms &amp; Conditions</a> and
+      <a routerLink="/privacy">Privacy Policy</a>.
+    </p>
+
+  </div>
+</div>

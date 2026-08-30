@@ -1,6 +1,6 @@
 import { Hero } from './Features/Modules/Pages/hero/hero';
-import { Login } from './Features/Modules/Pages/login/login';
-import { SignUp } from './Features/Modules/Pages/sign-up/sign-up';
+import { Login } from './Features/Auth/login/login';
+import { SignUp } from './Features/Auth/sign-up/sign-up';
 import { Footer } from './Shared/Component/footer/footer';
 import { Navbar } from './Shared/Component/navbar/navbar';
 import { Routes } from '@angular/router';
