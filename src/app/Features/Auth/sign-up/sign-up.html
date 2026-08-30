@@ -88,10 +88,11 @@
       <div class="form-row">
         <div class="field password-field">
           <label for="Password"><span class="req">*</span>Password</label>
-          <input type="password" id="Password" [formField]="signupForm.password"
+          <input [type]="showPassword() ? 'text' :'password' " id="Password" [formField]="signupForm.password"
             placeholder="Please enter your new password"
             [class.invalid]="signupForm.password().invalid() && (signupForm.password().touched() || submitted())">
-          <button type="button" class="toggle-eye" data-target="Password">👁</button>
+          <button type="button" class="toggle-eye" data-target="Password" (click)="togglePassword()">{{ showPassword() ?
+            '🙈' : '👁' }}</button>
           @if (signupForm.password().invalid() &&
           (signupForm.password().touched() || submitted())) {
 
@@ -107,10 +108,11 @@
         </div>
         <div class="field password-field">
           <label for="CnfPassword"><span class="req">*</span>Confirm Password</label>
-          <input type="password" id="CnfPassword" [formField]="signupForm.confirmPassword"
-            placeholder="Please re-enter your password"
+          <input [type]="showConfirmPassword()?'text' :'password'" id="CnfPassword"
+            [formField]="signupForm.confirmPassword" placeholder="Please re-enter your password"
             [class.invalid]="signupForm.confirmPassword().invalid() &&( signupForm.confirmPassword()|| submitted()).touched()">
-          <button type="button" class="toggle-eye" data-target="CnfPassword">👁</button>
+          <button type="button" class="toggle-eye" data-target="CnfPassword" (click)="toggleConfirmPassword()">{{
+            showConfirmPassword() ? '🙈' : '👁' }} </button>
           @if (signupForm.confirmPassword().invalid() &&
           (signupForm.confirmPassword().touched() || submitted())) {
 

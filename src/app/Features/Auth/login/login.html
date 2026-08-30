@@ -4,26 +4,14 @@
        LEFT SECTION - SLIDER
        ===================================================== -->
 
-  <div
-    class="left-section"
-    (mouseenter)="pauseAutoplay()"
-    (mouseleave)="startAutoplay()"
-    (touchstart)="onTouchStart($event)"
-    (touchend)="onTouchEnd($event)"
-  >
+  <div class="left-section" (mouseenter)="pauseAutoplay()" (mouseleave)="startAutoplay()"
+    (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
 
     <div class="slide-track">
 
-      <div
-        class="slide"
-        *ngFor="let slide of slides; let i = index"
-        [class.active]="currentIndex() === i"
-      >
+      <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="currentIndex() === i">
 
-        <img
-          [src]="slide.image"
-          [alt]="slide.alt"
-        >
+        <img [src]="slide.image" [alt]="slide.alt">
 
         <h2>{{ slide.title }}</h2>
 
@@ -36,14 +24,9 @@
     <!-- Slider dots -->
     <div class="dots">
 
-      <button
-        type="button"
-        *ngFor="let slide of slides; let i = index"
-        class="dot"
-        [class.active]="currentIndex() === i"
-        (click)="goToSlide(i)"
-        [attr.aria-label]="'Go to slide ' + (i + 1)"
-      ></button>
+      <button type="button" *ngFor="let slide of slides; let i = index" class="dot"
+        [class.active]="currentIndex() === i" (click)="goToSlide(i)"
+        [attr.aria-label]="'Go to slide ' + (i + 1)"></button>
 
     </div>
 
@@ -59,10 +42,7 @@
     <!-- Logo -->
     <div class="logo">
 
-      <img
-        src="images/logo.png"
-        alt="Exam-AI Logo"
-      >
+      <img src="images/logo.png" alt="Exam-AI Logo">
 
       <span>Exam-AI</span>
 
@@ -83,10 +63,7 @@
          LOGIN FORM
          ===================================================== -->
 
-    <form
-      class="Login-form"
-      (submit)="onSubmit(); $event.preventDefault()"
-    >
+    <form class="Login-form" (submit)="onSubmit(); $event.preventDefault()">
 
 
       <!-- =================================================
@@ -100,35 +77,30 @@
           Email or Phone
         </label>
 
-        <input
-          type="text"
-          id="EmailOrPhone"
-          [formField]="loginForm.emailOrPhone"
-          placeholder="Enter email or phone number"
-          [class.invalid]="
+        <input type="text" id="EmailOrPhone" [formField]="loginForm.emailOrPhone"
+          placeholder="Enter email or phone number" [class.invalid]="
             loginForm.emailOrPhone().invalid() &&
             (loginForm.emailOrPhone().touched() || submitted())
-          "
-        >
+          ">
 
 
         <!-- Error messages -->
 
         @if (
-          loginForm.emailOrPhone().invalid() &&
-          (loginForm.emailOrPhone().touched() || submitted())
+        loginForm.emailOrPhone().invalid() &&
+        (loginForm.emailOrPhone().touched() || submitted())
         ) {
 
-          @for (
-            error of loginForm.emailOrPhone().errors();
-            track error.kind
-          ) {
+        @for (
+        error of loginForm.emailOrPhone().errors();
+        track error.kind
+        ) {
 
-            <small class="error">
-              {{ error.message }}
-            </small>
+        <small class="error">
+          {{ error.message }}
+        </small>
 
-          }
+        }
 
         }
 
@@ -140,57 +112,29 @@
            ================================================= -->
 
       <div class="field password-field">
-
         <label for="Password">
           <span class="req">*</span>
           Password
         </label>
 
-        <input
-          type="password"
-          id="Password"
-          [formField]="loginForm.password"
+        <!-- Bind type dynamically -->
+        <input [type]="showPassword() ? 'text' : 'password'" id="Password" [formField]="loginForm.password"
           placeholder="Please enter your password"
-          [class.invalid]="
-            loginForm.password().invalid() &&
-            (loginForm.password().touched() || submitted())
-          "
-        >
+          [class.invalid]="loginForm.password().invalid() && (loginForm.password().touched() || submitted())">
 
-
-        <!-- Password toggle -->
-
-        <button
-          type="button"
-          class="toggle-eye"
-          data-target="Password"
-          aria-label="Show or hide password"
-        >
-          👁
+        <!-- Toggle button -->
+        <button type="button" class="toggle-eye" aria-label="Show or hide password" (click)="togglePassword()">
+          {{ showPassword() ? '🙈' : '👁' }}
         </button>
 
-
-        <!-- Password errors -->
-
-        @if (
-          loginForm.password().invalid() &&
-          (loginForm.password().touched() || submitted())
-        ) {
-
-          @for (
-            error of loginForm.password().errors();
-            track error.kind
-          ) {
-
-            <small class="error">
-              {{ error.message }}
-            </small>
-
-          }
-
+        <!-- Error messages -->
+        @if (loginForm.password().invalid() && (loginForm.password().touched() || submitted())) {
+        @for (error of loginForm.password().errors(); track error.kind) {
+        <small class="error">{{ error.message }}</small>
         }
-
+        }
       </div>
+
 
 
       <!-- =================================================
@@ -199,15 +143,9 @@
 
       <div class="remember-forgot">
 
-        <label
-          class="remember"
-          for="rememberME"
-        >
+        <label class="remember" for="rememberME">
 
-          <input
-            type="checkbox"
-            id="rememberME"
-          >
+          <input type="checkbox" id="rememberME">
 
           <span>
             Remember Me
@@ -227,17 +165,13 @@
            LOGIN BUTTON
            ================================================= -->
 
-      <button
-        type="submit"
-        class="login-btn"
-        [disabled]="isSubmitting()"
-      >
+      <button type="submit" class="login-btn" [disabled]="isSubmitting()">
 
         @if (isSubmitting()) {
-          Logging in...
+        Logging in...
         }
         @else {
-          Login
+        Login
         }
 
       </button>

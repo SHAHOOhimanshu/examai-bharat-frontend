@@ -1,12 +1,20 @@
 import { Component, OnInit, OnDestroy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { email, form, FormField, minLength, pattern, required, validate } from '@angular/forms/signals';
+import {
+  email,
+  form,
+  FormField,
+  minLength,
+  pattern,
+  required,
+  validate,
+} from '@angular/forms/signals';
 
 @Component({
   selector: 'app-SignUp',
   standalone: true,
-  imports: [CommonModule, RouterLink,FormField],
+  imports: [CommonModule, RouterLink, FormField],
   templateUrl: './sign-up.html',
   styleUrl: './sign-up.css',
 })
@@ -15,7 +23,8 @@ export class SignUp {
   isSubmitting = signal(false);
   submitError = signal('');
   currentIndex = signal(0);
-
+  showPassword = signal(false);
+  showConfirmPassword = signal(false);
   private autoplayId: ReturnType<typeof setInterval> | null = null;
 
   private touchStartX = 0;
@@ -151,7 +160,13 @@ export class SignUp {
       this.previous();
     }
   }
+  togglePassword(): void {
+    this.showPassword.update((v) => !v);
+  }
 
+  toggleConfirmPassword(): void {
+    this.showConfirmPassword.update((v) => !v);
+  }
   // =========================
   // SUBMIT
   // =========================

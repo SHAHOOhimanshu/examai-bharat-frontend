@@ -1,14 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal } from '@angular/core';
-import {
-  email,
-  form,
-  FormField,
-  minLength,
-  pattern,
-  required,
-  validate,
-} from '@angular/forms/signals';
+import { form, FormField, minLength, required, validate } from '@angular/forms/signals';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -22,7 +14,7 @@ export class Login {
   isSubmitting = signal(false);
   submitError = signal('');
   currentIndex = signal(0);
-
+  showPassword = signal(false);
   private autoPlayId: ReturnType<typeof setInterval> | null = null;
   private touchStartX = 0;
   private touchEndX = 0;
@@ -133,6 +125,9 @@ export class Login {
     else {
       this.previous();
     }
+  }
+  togglePassword(): void {
+    this.showPassword.update((value) => !value);
   }
   onSubmit(): void {
     this.submitted.set(true);
